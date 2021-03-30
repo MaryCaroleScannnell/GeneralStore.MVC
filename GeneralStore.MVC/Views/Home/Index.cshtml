@@ -5,23 +5,22 @@
 <div class="jumbotron">
     <h1>General Store</h1>
     <p class="lead">You should be able to view customers, transactions, and products through our general store</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <p><a href=@Html.ActionLink("Learn More About Us", "About")</a></p>
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
+        <h2>Products</h2>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            Our General Store, located in rural Indiana, is host to a multitude of fine food and items of distinction.<br />
+            Come browse our products and see what we have for you.
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <p><a class="btn btn-default" @Html.ActionLink("Check Products", "Index", "Product", null, new { @class = "btn btn-primary btn-large" })</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <h2>Customers</h2>
+        <p>We have lots of wonderful customers come our way. Check out our valued members</p>
+        <p><a class="btn btn-default" @Html.ActionLink("Check Customers", "Index", "Customer", null, new { @class = "btn btn-primary btn-large"})</a></p>
     </div>
     <div class="col-md-4">
         <h2>Web Hosting</h2>

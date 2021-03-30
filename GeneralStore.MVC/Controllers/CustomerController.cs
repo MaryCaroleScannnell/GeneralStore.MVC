@@ -9,37 +9,37 @@ using System.Web.Mvc;
 
 namespace GeneralStore.MVC.Controllers
 {
-    public class ProductController : Controller
+    public class CustomerController : Controller
     {
         private ApplicationDbContext _db = new ApplicationDbContext();
-
-        // GET: Product
+        // GET: Customer
         public ActionResult Index()
         {
-            List<Product> productList = _db.Products.ToList();
-            List<Product> orderedList = productList.OrderBy(prod => prod.Name).ToList();
+            List<Customer> customerList = _db.Customers.ToList();
+            List<Customer> orderedList = customerList.OrderBy(prod => prod.FirstName).ToList();
             return View(orderedList);
+            
         }
 
-        //Get Product Create
+        //Get: Create Customer
         public ActionResult Create()
         {
+
             return View();
         }
-
-        //Post Product Create
+        //Post: Create Customer
         [HttpPost]
-        public ActionResult Create(Product product)
+        public ActionResult Create(Customer customer)
         {
             if (ModelState.IsValid)
             {
-                _db.Products.Add(product);
+                _db.Customers.Add(customer);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(product);
-        }
 
+            return View(customer);
+        }
         // GET : Delete
         // Product/Delete/{id}
         public ActionResult Delete(int? id)
@@ -48,22 +48,23 @@ namespace GeneralStore.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = _db.Products.Find(id);
-            if (product == null)
+            Customer customer = _db.Customers.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(product);
+            return View(customer);
         }
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
-            Product product = _db.Products.Find(id);
-            _db.Products.Remove(product);
+            Customer customer = _db.Customers.Find(id);
+            _db.Customers.Remove(customer);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+
         // GET : Edit
         // Product/Edit/{id}
         public ActionResult Edit(int? id)
@@ -72,42 +73,43 @@ namespace GeneralStore.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = _db.Products.Find(id);
-            if (product == null)
+            Customer customer = _db.Customers.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(product);
+            return View(customer);
         }
         // POST : Edit// Product/Edit/{id}
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Product product)
+        public ActionResult Edit(Customer customer)
         {
             if (ModelState.IsValid)
             {
-                _db.Entry(product).State = EntityState.Modified;
+                _db.Entry(customer).State = EntityState.Modified;
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(product);
+            return View(customer);
         }
+
         // GET : Details
-        // Product/Details/{id}
+// Product/Details/{id}
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = _db.Products.Find(id);
+            Customer customer = _db.Customers.Find(id);
 
-            if (product == null)
+            if (customer == null)
             {
                 return HttpNotFound();
             }
 
-            return View(product);
+            return View(customer);
         }
     }
 }
